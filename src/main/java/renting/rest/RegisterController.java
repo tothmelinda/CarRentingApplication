@@ -22,7 +22,7 @@ public class RegisterController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "/register.html")
+    @GetMapping(value = "/register")
     public String registerForm(Model model) {
         MyUserDTO userDTO = new MyUserDTO();
         userDTO.setAccountNonExpired(true);
@@ -32,18 +32,18 @@ public class RegisterController {
 
         model.addAttribute("user", userDTO);
 
-        return "register.html";
+        return "register";
     }
 
 
-    @PostMapping(value = "/register.html")
+    @PostMapping(value = "/register")
     public String registerUser(@ModelAttribute("user") @RequestBody MyUserDTO myUserDTO) {
         if (myUserDTO.getPassword().equalsIgnoreCase(myUserDTO.getPasswordConfirm())) {
             myUserDTO.setRoles(Set.of(new Role("ROLE_USER")));
             MyUserMapper.fromEntityToDTO(userService.saveUser(MyUserMapper.fromDtoToEntity(myUserDTO)));
-            return "register.html-success";
+            return "register-success";
         } else {
-            return "register.html";
+            return "register";
         }
     }
 

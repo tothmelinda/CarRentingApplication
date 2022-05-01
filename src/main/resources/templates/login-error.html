@@ -5,7 +5,7 @@
     <title>Error Page</title>
     <link rel="stylesheet" href="css/main.css" th:href="@{/css/main.css}"/>
 </head>
-<body>
+<body style="background-color:#54585c">
 <body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
 <h1 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|">404</h1>
 <p th:utext="${errorMessage}">Error java.lang.NullPointerException</p>
