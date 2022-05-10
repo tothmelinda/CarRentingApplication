@@ -131,7 +131,7 @@ public class CarController {
     public String rentCarForm(@PathVariable("id") Long id, Model model) {
         Car car = carRepository.getById(id);
         RentalAndReturnDate rentalReturnDate = new RentalAndReturnDate();
-        rentalReturnDate.setReturnDate(rentalReturnDate.getRentalDate().plusDays(30));
+        rentalReturnDate.setReturnDate(rentalReturnDate.getRentalDate().plusDays(14));
         int[] quantity = {0, 1, 2, 3};
         for (int i = 0; i < quantity.length; i++) {
             if (car.getQuantity() == quantity[0]) {

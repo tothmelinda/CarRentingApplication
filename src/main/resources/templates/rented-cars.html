@@ -25,20 +25,20 @@
                 </a>
                 <ul class =" nav nav-tabs">
                     <li role="presentation" th:class="${carBrand}">
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" th:href="@{/car/all}">All cars</a>
-                    <a class="dropdown-item" th:href="@{/car/brand}">Audi</a>
-                    <a class="dropdown-item" th:href="@{/car/brand}">BMW</a>
-                    <a class="dropdown-item" th:href="@{/car/brand}">Dacia</a>
-                    <a class="dropdown-item" th:href="@{/car/brand}">Ford</a>
-                    <a class="dropdown-item" th:href="@{/car/brand}">Kia</a>
-                    <a class="dropdown-item" th:href="@{/car/brand}">Mercedes-Benz</a>
-                    <a class="dropdown-item" th:href="@{/car/brand}">Peugeot</a>
-                    <a class="dropdown-item" th:href="@{/car/brand}">Renault</a>
-                    <a class="dropdown-item" th:href="@{/car/brand}">Toyota</a>
-                    <a class="dropdown-item" th:href="@{/car/brand}">Volkswagen</a>
-                    <a class="dropdown-item" th:href="@{/car/brand}">Volvo</a>
-                </div>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" th:href="@{/car/all}">All cars</a>
+                            <a class="dropdown-item" th:href="@{/car/brand}">Audi</a>
+                            <a class="dropdown-item" th:href="@{/car/brand}">BMW</a>
+                            <a class="dropdown-item" th:href="@{/car/brand}">Dacia</a>
+                            <a class="dropdown-item" th:href="@{/car/brand}">Ford</a>
+                            <a class="dropdown-item" th:href="@{/car/brand}">Kia</a>
+                            <a class="dropdown-item" th:href="@{/car/brand}">Mercedes-Benz</a>
+                            <a class="dropdown-item" th:href="@{/car/brand}">Peugeot</a>
+                            <a class="dropdown-item" th:href="@{/car/brand}">Renault</a>
+                            <a class="dropdown-item" th:href="@{/car/brand}">Toyota</a>
+                            <a class="dropdown-item" th:href="@{/car/brand}">Volkswagen</a>
+                            <a class="dropdown-item" th:href="@{/car/brand}">Volvo</a>
+                        </div>
                     </li>
                 </ul>
             </li>
@@ -88,93 +88,39 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-9">
-<!--                <a href="/car/brand" class="btn btn-secondary btn-sm" id="menu-toggle">Choose by car brand</a>&nbsp;&nbsp;-->
-<!--                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."-->
-<!--                       title="Type in a brand">-->
-<!--                <form th:action="@{/search}" method="get">-->
-<!--                    <input type="text" name="keyword" th:value="${keyword}"  placeholder="Find by CarBrand or City" size="50" >-->
-<!--                    <button type="submit" class="btn btn-info" >Search</button>-->
-<!--                    <button type="submit" class="btn btn-info" >Reset</button>-->
-<!--                </form>-->
                 <div th:switch="${cars}">
                     <table class="table table-striped table-dark">
                         <thead>
                         <tr>
                             <th scope="col">ID</th>
+                            <th scope="col">Rental Date</th>
+                            <th scope="col">Return Date</th>
                             <th scope="col">Car Name</th>
                             <th scope="col">Year</th>
                             <th scope="col">Car Brand</th>
                             <th scope="col">Colour</th>
                             <th scope="col">City</th>
-                            <th scope="col">Available</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Rent</th>
-                            <th scope="col">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="car : ${cars}">
                             <td th:text="${car.id}"></td>
+                            <td th:text="${car.rentalReturnDate.rentalDate}" ></td>
+                            <td th:text="${car.rentalReturnDate.returnDate}" ></td>
                             <td th:text="${car.carName}"></td>
                             <td th:text="${car.year}"></td>
                             <td th:text="${car.carBrand}"></td>
                             <td th:text="${car.carType.colour}"></td>
                             <td th:text="${car.city}"></td>
-                            <td th:text="${car.available ? 'Yes' : 'No'}"></td>
-                            <td th:text="${car.quantity}"></td>
-                            <td>
-                                <a th:href="@{'/car/rent/' + ${car.id}}">
-                                    <button type="button" class="btn btn-info" data-toggle="tooltip"
-                                            data-html="true"
-                                            data-placement="top"
-                                            th:attr="title=Rent +'&nbsp;'+${car.carBrand}+'&nbsp;'+${car.carName}"
-                                            th:disabled="${car.quantity eq 0}">
-                                        Rent
-                                    </button>
-                                </a>
-                            </td>
-                            <td>
-                                <a th:href="@{'/car/update/' + ${car.id}}" class="btn btn-primary" data-toggle="tooltip"
-                                   th:attr="title=Update +'&nbsp;'+'&quot;'+${car.carName}+'&quot;'">Update</a>
-                                <a th:href="@{'/car/delete/' + ${car.id}}" class="btn btn-danger" data-toggle="tooltip"
-                                   th:attr="title=Delete +'&nbsp;'+'&quot;'+${car.carName}+'&quot;'">Delete</a>
-                            </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div class = "col-lg-3">
-                <a href="/car/save" class="btn btn-info btn-lg">Save new car</a>
-            </div>
 
         </div>
     </div>
 </div>
-<script>
-function myFunction() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
-
-$("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("menuDisplayed");
-});
 
 </script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
