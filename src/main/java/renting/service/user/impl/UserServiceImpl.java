@@ -1,4 +1,4 @@
-package renting.service.impl;
+package renting.service.user.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -8,16 +8,29 @@ import renting.entity.MyUser;
 import renting.entity.Role;
 import renting.repository.RoleRepository;
 import renting.repository.UserRepository;
-import renting.service.UserService;
+import renting.service.email.BodyBuilderService;
+import renting.service.email.EmailSender;
+import renting.service.token.RandomTokenService;
+import renting.service.user.UserService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+
+    @Autowired
+    BodyBuilderService bodyBuilderService;
+
+    @Autowired
+    EmailSender emailSender;
+
+    @Autowired
+    private RandomTokenService randomTokenService;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
@@ -31,6 +44,10 @@ public class UserServiceImpl implements UserService {
 
     public MyUser findUserByUserName(String userName) {
         return userRepository.findByUsernameIgnoreCase(userName);
+    }
+
+    public MyUser findUserByRandomToken(String randomToken) {
+        return userRepository.findByRandomToken(randomToken);
     }
 
     public boolean findUserByUserNameAndPassword(String userName, String password) {
@@ -49,6 +66,8 @@ public class UserServiceImpl implements UserService {
     public MyUser saveUser(MyUser u) {
         MyUser user = new MyUser(u);
         user.setPassword(new BCryptPasswordEncoder().encode(u.getPassword()));
+        user.setRandomToken(randomTokenService.randomToken(u));
+        emailSender.sendEmail(user.getEmail(), "Activate your Account", bodyBuilderService.emailBody(user));
         u.getRoles().forEach(role -> {
             final Role roleByName = roleRepository.findByName(role.getName());
             if (roleByName == null)
@@ -59,4 +78,6 @@ public class UserServiceImpl implements UserService {
         });
         return userRepository.save(user);
     }
+
+
 }

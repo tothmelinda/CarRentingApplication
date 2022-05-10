@@ -25,10 +25,11 @@
     <title>Car Rental</title>
 </head>
 <body style="background-color:#54585c">
+
 <div class="col-md-12">
     <div class="wrapper">
         <div class="sidebar-header">
-            <h3 class ="header" style = "padding=20px">WELCOME TO OUR PAGE!</h3>
+            <h3 class ="header" style = "padding=20px; color: white">WELCOME TO OUR PAGE!</h3>
             <nav class="navbar navbar-expand-lg navbar-light bg-dark">
                 <a class="navbar-brand" style="color: white" href="/index">Home</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -60,7 +61,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" style="color: white" data-bs-toggle="dropdown" href="#"
-                               id="beautyProductsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                               id="flightsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                                aria-expanded="false">
                                 Flights
                             </a>
@@ -70,7 +71,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" style="color: white" data-bs-toggle="dropdown" href="#"
-                               id="beautyAdvisesDropdown"
+                               id="hotelDropdown"
                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Hotels
                             </a>
@@ -79,12 +80,8 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color: white" href="#">Contact</a>
+                            <a class="nav-link" style="color: white" href="/contact/">Contact</a>
                         </li>
-                        <form class="form-inline my-2 my-lg-0" style="padding-right: 150;">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" style="color: white" data-bs-toggle="dropdown"
@@ -94,9 +91,8 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="#">Profile</a>
-                                    <a class="dropdown-item" href="#">View appointment</a>
-                                    <a class="dropdown-item" href="#">View Shopping List</a>
-                                    <a class="dropdown-item" href="#">View Wishlist</a>
+                                    <a class="dropdown-item" href="/user/all">Users</a>
+                                    <a class="dropdown-item" href="#">Rented cars</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" th:href="@{/logout}">Logout</a>
                                 </div>
@@ -108,6 +104,24 @@
         </div>
 <!--        <div class="pt-4 bg-light"></div>-->
         <div class="form-group", style = "padding-top= 200px">
+            <div class="form-group", style = "padding-top= 200px">
+                <!--            <div class="row">-->
+                <div class="col" style="color:white">
+                    <br><br>
+                    <p>Looking for a car for your new adventure?</p><br>
+                    <p>With 12 stations located across 12 car rental locations in Romania, planning your journey couldn't be easier with CarRenting.
+                        Find a wide range of brand new economy and luxury car models available across Romania, with both short and long term car hire options available.
+                        We pride ourselves on providing world class service, catering to a range of customer needs, with car rental deals available all year round.
+                        So whether you are looking for car rental in Romania on a budget, or you want to rent a luxury car for a special event, CarRenting will have the rental
+                        car for you.</p>
+                    <br>
+                    <div class="img-container">
+                        <br>
+                        <img src="https://www.fleetmanagement.ae/wp-content/uploads/2019/12/Vehicle-Management.jpg"
+                             style="width:500px;height:350px;", alt="centered image">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

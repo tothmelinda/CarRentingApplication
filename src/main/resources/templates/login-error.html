@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Error Page</title>
-    <link rel="stylesheet" href="css/main.css" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" href="css/main.css" th:href="@{/index}"/>
 </head>
 <body style="background-color:#54585c">
 <body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">

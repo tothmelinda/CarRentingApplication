@@ -1,10 +1,19 @@
 package renting.entity;
 
-import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
+@Setter
+@Getter
 public class CarType {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
@@ -13,7 +22,7 @@ public class CarType {
     @Column(nullable = false, length = 20)
     private String colour;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    private Car cars;
+    @OneToMany(mappedBy = "carType", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
+    private Set<Car> cars;
 
 }

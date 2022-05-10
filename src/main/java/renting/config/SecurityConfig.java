@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import renting.service.impl.CustomUserDetailsService;
+import renting.service.user.impl.CustomUserDetailsService;
 
 @EnableGlobalMethodSecurity(
         prePostEnabled = true,
@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login", "/register").permitAll()
+                .antMatchers("/login", "/register","/activation/**","/activation-success").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

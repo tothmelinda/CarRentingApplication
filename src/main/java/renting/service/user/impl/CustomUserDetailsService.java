@@ -1,4 +1,4 @@
-package renting.service.impl;
+package renting.service.user.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import renting.entity.MyUser;
 import renting.entity.Role;
-import renting.service.UserService;
+import renting.service.user.UserService;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;

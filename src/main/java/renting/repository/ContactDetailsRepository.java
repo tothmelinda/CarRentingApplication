@@ -7,5 +7,4 @@ import renting.entity.ContactDetails;
 @Repository
 public interface ContactDetailsRepository extends JpaRepository<ContactDetails, Long> {
 
-//    ContactDetails findByPhoneNumber(String phoneNumber);
 }
